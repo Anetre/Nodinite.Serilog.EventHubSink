@@ -47,11 +47,12 @@ namespace Nodinite.Serilog.EventHubSink
             logEvent.LocalInterchangeId = _localInterchangeId;
             logEvent.ServiceInstanceActivityId = Guid.NewGuid();
 
-            var client = EventHubClient.CreateFromConnectionString(_connectionString);
+
+            _client = EventHubClient.CreateFromConnectionString(_connectionString);
 
             var message = new EventData(Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(logEvent)));
 
-            client.SendAsync(message).GetAwaiter().GetResult();
+            _client.SendAsync(message).GetAwaiter().GetResult();
         }
     }
 }
