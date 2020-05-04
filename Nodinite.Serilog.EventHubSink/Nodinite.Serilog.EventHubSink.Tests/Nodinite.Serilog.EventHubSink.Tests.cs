@@ -15,7 +15,6 @@ namespace Nodinite.Serilog.EventHubSink.Tests
         [TestMethod]
         public void ReadSettingsFromAppSettingsTest()
         {
-            // todo: implement moq
             var configuration = new ConfigurationBuilder()
                 .AddJsonFile("appsettings.json")
                 .Build();
@@ -75,7 +74,6 @@ namespace Nodinite.Serilog.EventHubSink.Tests
                 .WriteTo.NodiniteEventHubSink(connectionString, settings)
                 .CreateLogger()
                 .ForContext("ApplicationInterchangeId", $"CustomId-{Guid.NewGuid().ToString()}")
-                .ForContext("CustomerId", 12)
                 .ForContext("Body", JsonConvert.SerializeObject(new { Id = 1, Address = "Kalle kula veien 128" }))
                 .ForContext("OriginalMessageType", "TestMessage#1.0");
 

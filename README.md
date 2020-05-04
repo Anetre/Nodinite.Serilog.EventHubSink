@@ -19,7 +19,7 @@ Start by installing the NuGet package [Nodinite.Serilog.Sink.Core](https://www.n
 Install-Package Nodinite.Serilog.EventHubSink
 ```
 
-### Configuration
+### Set up
 
 [**Nodinite**](https://nodinite.com) requires some settings to be configured in order for events to be logged. Below you can see all settings that need to be configured.
 
@@ -66,7 +66,6 @@ ILogger log = new LoggerConfiguration()
     .WriteTo.NodiniteEventHubSink(connectionString, settings)
     .CreateLogger()
     .ForContext("ApplicationInterchangeId", $"CustomId-{Guid.NewGuid().ToString()}")
-    .ForContext("CustomerId", 12)
     .ForContext("Body", JsonConvert.SerializeObject(new { Id = 1 }))
     .ForContext("OriginalMessageType", "TestMessage#1.0");
 ```
